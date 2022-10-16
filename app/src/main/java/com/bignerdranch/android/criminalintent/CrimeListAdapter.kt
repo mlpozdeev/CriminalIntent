@@ -1,18 +1,22 @@
 package com.bignerdranch.android.criminalintent
 
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.criminalintent.databinding.ListItemCrimeBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class CrimeHolder(
     private val binding: ListItemCrimeBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(crime: Crime) {
         binding.crimeTitle.text = crime.title
-        binding.crimeDate.text = crime.date.toString()
+        val dateFormat = SimpleDateFormat("EEEE, MMM d, yyyy", Locale.ENGLISH)
+        binding.crimeDate.text = dateFormat.format(crime.date)
 
         binding.root.setOnClickListener {
             Toast.makeText(
